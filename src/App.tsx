@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef, MouseEvent } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import * as esbuild from "esbuild-wasm";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 
 function App() {
-  const ref = useRef<any>();
   const [input, setInput] = useState<string>("");
   const [code, setCode] = useState<string>("");
 
