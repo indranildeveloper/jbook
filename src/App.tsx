@@ -1,7 +1,10 @@
-import { useState, useEffect, useRef, MouseEvent } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as esbuild from "esbuild-wasm";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
+import CodeEditor from "./components/CodeEditor";
+
+import "bulmaswatch/superhero/bulmaswatch.min.css";
 
 function App() {
   const iframe = useRef<any>();
@@ -18,7 +21,7 @@ function App() {
     startService();
   }, []);
 
-  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async () => {
     // TODO: return if the test input is empty
 
     iframe.current.srcdoc = html;
@@ -60,6 +63,7 @@ function App() {
 
   return (
     <div>
+      <CodeEditor initialValue={input} onChange={(value) => setInput(value)} />
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
