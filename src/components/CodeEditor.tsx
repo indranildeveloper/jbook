@@ -8,6 +8,7 @@ import traverse from "@babel/traverse";
 import { parse } from "@babel/parser";
 
 import "./CodeEditor.css";
+import "./SyntaxHighlighting.css";
 
 interface CodeEditorProps {
   initialValue: string;
@@ -60,9 +61,9 @@ const CodeEditor: FC<CodeEditorProps> = ({ initialValue, onChange }) => {
     };
   };
 
-  const handleEditorDidMount = async (editor: any, monaco: any) => {
+  const handleEditorDidMount = useCallback(async (editor: any, monaco: any) => {
     activateMonacoJSXHighlighter(editor, monaco);
-  };
+  }, []);
 
   return (
     <div className="editor-wrapper">

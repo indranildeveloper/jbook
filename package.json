@@ -16,6 +16,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "axios": "^1.2.6",
+    "buffer": "^6.0.3",
     "bulmaswatch": "^0.8.1",
     "esbuild-wasm": "^0.17.5",
     "jscodeshift": "^0.14.0",
@@ -23,17 +24,20 @@
     "monaco-editor": "^0.34.1",
     "monaco-jsx-highlighter": "^2.0.4",
     "prettier": "^2.8.3",
+    "process": "^0.11.10",
     "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": [
