@@ -10,6 +10,9 @@ interface ResizableProps {
 const Resizable: FC<ResizableProps> = ({ direction, children }) => {
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const [codeEditorWidth, setCodeEditorWidth] = useState(
+    window.innerWidth * 0.75
+  );
 
   let resizableProps: ResizableBoxProps;
 
@@ -24,6 +27,9 @@ const Resizable: FC<ResizableProps> = ({ direction, children }) => {
       timer = setTimeout(() => {
         setInnerHeight(window.innerHeight);
         setInnerWidth(window.innerWidth);
+        if (window.innerWidth * 0.75 < codeEditorWidth) {
+          setCodeEditorWidth(window.innerWidth * 0.75);
+        }
       }, 100);
     };
 
@@ -38,10 +44,13 @@ const Resizable: FC<ResizableProps> = ({ direction, children }) => {
     resizableProps = {
       className: "resize-horizontal",
       height: Infinity,
-      width: innerWidth * 0.75,
+      width: codeEditorWidth,
       resizeHandles: ["e"],
       minConstraints: [innerWidth * 0.2, Infinity],
       maxConstraints: [innerWidth * 0.75, Infinity],
+      onResizeStop: (event, data) => {
+        setCodeEditorWidth(data.size.width);
+      },
     };
   } else {
     resizableProps = {
