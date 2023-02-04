@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 import Resizable from "./Resizable";
@@ -8,11 +8,16 @@ function CodeCell() {
   const [input, setInput] = useState<string>("");
   const [code, setCode] = useState<string>("");
 
-  const handleSubmit = async () => {
-    // TODO: return if the test input is empty
-    const output = await bundleCode(input);
-    setCode(output);
-  };
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const output = await bundleCode(input);
+      setCode(output);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [input]);
 
   return (
     <Resizable direction="vertical">

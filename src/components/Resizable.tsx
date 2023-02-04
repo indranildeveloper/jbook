@@ -38,7 +38,7 @@ const Resizable: FC<ResizableProps> = ({ direction, children }) => {
     return () => {
       window.removeEventListener("resize", listener);
     };
-  }, []);
+  }, [codeEditorWidth]);
 
   if (direction === "horizontal") {
     resizableProps = {
