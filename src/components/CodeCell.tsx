@@ -7,11 +7,13 @@ import bundleCode from "../bundler";
 function CodeCell() {
   const [input, setInput] = useState<string>("");
   const [code, setCode] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const timer = setTimeout(async () => {
       const output = await bundleCode(input);
-      setCode(output);
+      setCode(output.code);
+      setError(output.error);
     }, 1000);
 
     return () => {
@@ -29,7 +31,7 @@ function CodeCell() {
           />
         </Resizable>
 
-        <Preview code={code} />
+        <Preview code={code} bundlingError={error} />
       </div>
     </Resizable>
   );

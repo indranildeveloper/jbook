@@ -1,8 +1,10 @@
 import { FC, useEffect, useRef } from "react";
 import "./Preview.css";
+import { clearConfigCache } from "prettier";
 
 interface PreviewProps {
   code: string;
+  bundlingError: string;
 }
 
 const html = `
@@ -10,24 +12,33 @@ const html = `
   <head>
     <style>html { background-color: #ffffff }</style>
   </head>
-  <body>
+  <body style="font-family: sans-serif;">
     <div id="root"></div>
     <script>
+      const handleError = (error) => {
+        const root = document.querySelector("#root");
+        root.innerHTML = "<div style='color: red;'><h4>Runtime Error</h4>" + error + "</div>";
+        console.error(error);
+      };
+
+      window.addEventListener("error", (event) => {
+        event.preventDefault();
+        handleError(event.error);
+      });
+
       window.addEventListener("message", (event) => {
         try{
           eval(event.data);
         } catch(error) {
-          const root = document.querySelector("#root");
-          root.innerHTML = "<div style='color: red;'><h4>Runtime Error</h4>" + error + "</div>";
-          console.error(error);
+         handleError(error);
         }
-      }, false)
+      }, false);
     </script>
   </body>
 </html>
 `;
 
-const Preview: FC<PreviewProps> = ({ code }) => {
+const Preview: FC<PreviewProps> = ({ code, bundlingError }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
@@ -45,6 +56,7 @@ const Preview: FC<PreviewProps> = ({ code }) => {
         title="code-runner"
         sandbox="allow-scripts"
       ></iframe>
+      {bundlingError && <div className="preview-error">{bundlingError}</div>}
     </div>
   );
 };
