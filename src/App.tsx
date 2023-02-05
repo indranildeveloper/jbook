@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import * as esbuild from "esbuild-wasm";
-import CodeCell from "./components/CodeCell";
+// import CodeCell from "./components/CodeCell";
+import TextEditor from "./components/TextEditor";
 import "bulmaswatch/superhero/bulmaswatch.min.css";
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <div>
-      <CodeCell />
+      <TextEditor />
       {/* <CodeCell /> */}
     </div>
   );

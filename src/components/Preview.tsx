@@ -1,6 +1,5 @@
 import { FC, useEffect, useRef } from "react";
 import "./Preview.css";
-import { clearConfigCache } from "prettier";
 
 interface PreviewProps {
   code: string;
