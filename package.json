@@ -30,6 +30,7 @@
     "monaco-editor": "^0.34.1",
     "monaco-jsx-highlighter": "^2.0.4",
     "prettier": "^2.8.3",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-app-rewired": "^2.2.1",
     "react-dom": "^18.2.0",
@@ -66,8 +67,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "process": "^0.11.10"
   }
 }
