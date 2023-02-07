@@ -1,19 +1,10 @@
-import { FC, useEffect } from "react";
-import * as esbuild from "esbuild-wasm";
+import { FC } from "react";
 import "bulmaswatch/superhero/bulmaswatch.min.css";
 import CellList from "./components/CellList";
+import { initializeBundle } from "./bundler";
 
 const App: FC = () => {
-  useEffect(() => {
-    async function esbuildInitialize() {
-      await esbuild.initialize({
-        worker: true,
-        wasmURL: "https://unpkg.com/esbuild-wasm@0.17.6/esbuild.wasm",
-      });
-    }
-    esbuildInitialize();
-  }, []);
-
+  initializeBundle();
   return (
     <div>
       <CellList />
