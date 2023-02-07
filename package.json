@@ -23,7 +23,7 @@
     "axios": "^1.2.6",
     "buffer": "^6.0.3",
     "bulmaswatch": "^0.8.1",
-    "esbuild-wasm": "^0.17.5",
+    "esbuild-wasm": "^0.17.6",
     "immer": "^9.0.19",
     "jscodeshift": "^0.14.0",
     "localforage": "^1.10.0",
